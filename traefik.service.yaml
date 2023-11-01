@@ -1,0 +1,22 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik-service
+  namespace: kube-public
+  labels:
+    app: traefik
+spec:
+  selector:
+    app: traefik
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http-proxy
+      nodePort: 30021
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: admin-dashboard
+      nodePort: 30042
